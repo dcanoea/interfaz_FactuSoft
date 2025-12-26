@@ -1,23 +1,22 @@
 package com.mycompany.interfaz;
 
-import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  *
- * @author Usuario
+ * @author David CE
  */
 public class Interfaz {
 
     public static void main(String[] args) {
-        // PRIMERO: Configuramos el diseño (ANTES de crear ventanas)
+        // Instalamos el tema FlatLaf Light (o Dark)
         try {
-            FlatLightLaf.setup(); // Esto activa el modo moderno claro
-            // UIManager.put( "Button.arc", 999 ); // (Opcional) Botones redondos
+            // Puedes elegir: FlatLightLaf.setup() o FlatDarkLaf.setup()
+            com.formdev.flatlaf.FlatDarkLaf.setup();
         } catch (Exception ex) {
-            System.err.println("Falló la carga de FlatLaf");
+            System.err.println("Failed to initialize LaF");
         }
 
-        // 2. LUEGO: Arrancamos la ventana de Login
+        // Aquí sigue el código normal de NetBeans para arrancar la ventana
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
