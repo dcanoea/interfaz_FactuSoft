@@ -5,9 +5,7 @@
 package com.mycompany.interfaz;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import static com.mycompany.interfaz.PaletaColores.*;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Cursor;
 
 /**
  *
@@ -22,53 +20,49 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        // --- DISEÑO MODERNIZADO CON FLATLAF --- 
+        this.setLocationRelativeTo(null); // Centrar en pantalla
 
         // --- 1. USUARIO ---
-        jTextFieldUser.putClientProperty(FlatClientProperties.STYLE, ""
-                + "arc: 999; " // Redondeado
-                + "focusedBorderColor: #CBF6E3; "
-                + "borderWidth: 1; "
-                + "margin: 0,10,0,0" // <--- ESTO AÑADE 10px DE ESPACIO A LA IZQUIERDA
-        );
-        jTextFieldUser.setBackground(colorNegro1);
-        jTextFieldUser.setForeground(Color.WHITE);       // Letra blanca
-        jTextFieldUser.setCaretColor(Color.WHITE);       // Cursor blanco
-        jTextFieldUser.setSelectionColor(colorMenta3);    // Selección verde
-        jTextFieldUser.setSelectedTextColor(colorNegro1); // Texto seleccionado negro
-        // Placeholder
+        // Aquí se aplica el estilo definido para los TextField y se añade un PlaceHolder
+        Estilos.aplicarEstiloCampo(jTextFieldUser);
         jTextFieldUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Introduzca su usuario");
 
         // --- 2. CONTRASEÑA ---
+        // Se define el campo completo para añadir los iconos de "ojo" y "bloq mayús"
         jPasswordField.putClientProperty(FlatClientProperties.STYLE, ""
-                + "showRevealButton: true; "
-                + "arc: 999; "
-                + "focusedBorderColor: #CBF6E3; "
+                + "showRevealButton: true; " // <--- EL OJO (Activado)
+                + "showCapsLock: true; " // <--- BLOQ MAYÚS (Activado)
+                + "capsLockIconColor: #FFFFFF; " // Color del icono Bloq Mayús (Blanco para verlos sobre negro)
+                + "arc: 999; " // Redondeado completo
+                + "focusedBorderColor: #75E6B5; " // Borde Verde Fuerte al enfocar
                 + "borderWidth: 1; "
-                + "margin: 0,10,0,0"
+                + "margin: 0,10,0,0" // Margen izquierdo de 10px
         );
-        jPasswordField.setBackground(colorNegro1);
-        jPasswordField.setForeground(Color.WHITE);
-        jPasswordField.setCaretColor(Color.WHITE);
-        jPasswordField.setSelectionColor(colorMenta3);
-        jPasswordField.setSelectedTextColor(colorNegro1);
+
+        // Colores para asegurar contraste (Fondo Negro / Texto Blanco)
+        jPasswordField.setBackground(Estilos.COLOR_NEGRO_PURO);
+        jPasswordField.setForeground(Estilos.COLOR_BLANCO);
+        jPasswordField.setCaretColor(Estilos.COLOR_BLANCO);        // Cursor blanco
+        jPasswordField.setSelectionColor(Estilos.COLOR_FONDO_MENTA); // Selección verde menta
+        jPasswordField.setSelectedTextColor(Estilos.COLOR_NEGRO_PURO);
+
         // Placeholder
         jPasswordField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Introduzca su contraseña");
 
-        // --- 3. BOTÓN ---
+        // --- 3. BOTÓN "ENTRAR" ---
         jButtonEnter.putClientProperty(FlatClientProperties.STYLE, "arc: 999");
-        jButtonEnter.setBackground(Color.DARK_GRAY);
-        jButtonEnter.setForeground(Color.WHITE);
+        jButtonEnter.setBackground(Estilos.COLOR_NEGRO_SUAVE);
+        jButtonEnter.setForeground(Estilos.COLOR_BLANCO);
+        jButtonEnter.setFont(Estilos.FUENTE_BOTON);
         jButtonEnter.setFocusPainted(false);
+        jButtonEnter.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Mano al pasar el ratón
 
-        // --- 4. ESTILO FUENTES ---
-        // Etiquetas
-        Font fuenteLabels = new Font("Century Gothic", Font.BOLD, 14);
-        jLabelUser.setFont(fuenteLabels);
-        jLabelPassword.setFont(fuenteLabels);
+        // --- 4. FUENTES DE ETIQUETAS Y LOGO ---
+        jLabelUser.setFont(Estilos.FUENTE_BOTON);
+        jLabelPassword.setFont(Estilos.FUENTE_BOTON);
 
-// Botón
-        jButtonEnter.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        // Borde del logo usando el color de estilo
+        jLabelLogo.setBorder(javax.swing.BorderFactory.createLineBorder(Estilos.COLOR_NEGRO_SUAVE));
     }
 
     /**

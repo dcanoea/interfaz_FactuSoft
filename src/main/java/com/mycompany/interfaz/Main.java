@@ -5,7 +5,7 @@ package com.mycompany.interfaz;
  *
  * @author David CE
  */
-public class Interfaz {
+public class Main {
 
     public static void main(String[] args) {
         // Instalamos el tema FlatLaf Light (o Dark)
