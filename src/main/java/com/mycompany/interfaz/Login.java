@@ -5,6 +5,7 @@
 package com.mycompany.interfaz;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import static com.mycompany.interfaz.PaletaColores.*;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -22,35 +23,41 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         // --- DISEÑO MODERNIZADO CON FLATLAF --- 
-        // Convertimos colores Hex a un objeto Color de Java una sola vez
-        Color colorMenta = Color.decode("#CBF6E3");
-        Color colorNegro = Color.BLACK;
-        Color colorBlanco = Color.WHITE;
 
         // --- 1. USUARIO ---
-        jTextFieldUser.putClientProperty(FlatClientProperties.STYLE, "arc: 999; focusedBorderColor: #CBF6E3; border: 1,1,1,1");
-        jTextFieldUser.setBackground(colorNegro);
-        jTextFieldUser.setForeground(colorBlanco);       // Letra blanca
-        jTextFieldUser.setCaretColor(colorBlanco);       // Cursor blanco
-        jTextFieldUser.setSelectionColor(colorMenta);    // Selección verde
-        jTextFieldUser.setSelectedTextColor(colorNegro); // Texto seleccionado negro
+        jTextFieldUser.putClientProperty(FlatClientProperties.STYLE, ""
+                + "arc: 999; " // Redondeado
+                + "focusedBorderColor: #CBF6E3; "
+                + "borderWidth: 1; "
+                + "margin: 0,10,0,0" // <--- ESTO AÑADE 10px DE ESPACIO A LA IZQUIERDA
+        );
+        jTextFieldUser.setBackground(colorNegro1);
+        jTextFieldUser.setForeground(Color.WHITE);       // Letra blanca
+        jTextFieldUser.setCaretColor(Color.WHITE);       // Cursor blanco
+        jTextFieldUser.setSelectionColor(colorMenta3);    // Selección verde
+        jTextFieldUser.setSelectedTextColor(colorNegro1); // Texto seleccionado negro
         // Placeholder
         jTextFieldUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Introduzca su usuario");
 
         // --- 2. CONTRASEÑA ---
-        jPasswordField.putClientProperty(FlatClientProperties.STYLE, "showRevealButton: true; arc: 999; focusedBorderColor: #CBF6E3; border: 1,1,1,1");
-
-        jPasswordField.setBackground(colorNegro);
-        jPasswordField.setForeground(colorBlanco);       // Al ser blanco, el ojo será blanco
-        jPasswordField.setCaretColor(colorBlanco);
-        jPasswordField.setSelectionColor(colorMenta);
-        jPasswordField.setSelectedTextColor(colorNegro);
+        jPasswordField.putClientProperty(FlatClientProperties.STYLE, ""
+                + "showRevealButton: true; "
+                + "arc: 999; "
+                + "focusedBorderColor: #CBF6E3; "
+                + "borderWidth: 1; "
+                + "margin: 0,10,0,0"
+        );
+        jPasswordField.setBackground(colorNegro1);
+        jPasswordField.setForeground(Color.WHITE);
+        jPasswordField.setCaretColor(Color.WHITE);
+        jPasswordField.setSelectionColor(colorMenta3);
+        jPasswordField.setSelectedTextColor(colorNegro1);
         // Placeholder
         jPasswordField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Introduzca su contraseña");
 
         // --- 3. BOTÓN ---
         jButtonEnter.putClientProperty(FlatClientProperties.STYLE, "arc: 999");
-        jButtonEnter.setBackground(new Color(51, 51, 51));
+        jButtonEnter.setBackground(Color.DARK_GRAY);
         jButtonEnter.setForeground(Color.WHITE);
         jButtonEnter.setFocusPainted(false);
 
