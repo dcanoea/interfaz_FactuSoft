@@ -82,7 +82,7 @@ public class Estilos {
                 + "hoverBackground: #000000;" // Fondo negro al pasar ratón
                 + "hoverForeground: #FFFFFF;" // Texto blanco al pasar ratón
                 + "arc: 0;" // Bordes cuadrados (franja)
-                + "margin: 20,30,20,300;" // Margen interno (Arriba, Izq, Abajo, Der)
+                + "margin: 20,15,20,15;" // Margen interno (Arriba, Izq, Abajo, Der)
         );
     }
 

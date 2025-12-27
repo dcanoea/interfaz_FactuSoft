@@ -44,7 +44,6 @@ public class Principal extends javax.swing.JFrame {
         btnProducts = new javax.swing.JButton();
         btnInvoices = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         jPanelRight = new javax.swing.JPanel();
         lblEnterpriseIcon = new javax.swing.JLabel();
 
@@ -56,7 +55,7 @@ public class Principal extends javax.swing.JFrame {
         jPanelLeft.setBackground(new java.awt.Color(160, 238, 204));
         jPanelLeft.setLayout(new java.awt.GridBagLayout());
 
-        lblFactuSoftIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO.png"))); // NOI18N
+        lblFactuSoftIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO_small.png"))); // NOI18N
         lblFactuSoftIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -64,43 +63,53 @@ public class Principal extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
         jPanelLeft.add(lblFactuSoftIcon, gridBagConstraints);
 
+        btnClients.setMinimumSize(new java.awt.Dimension(100, 50));
         btnClients.addActionListener(this::btnClientsActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 15, 20);
         jPanelLeft.add(btnClients, gridBagConstraints);
+
+        btnProducts.setMinimumSize(new java.awt.Dimension(100, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 15, 20);
         jPanelLeft.add(btnProducts, gridBagConstraints);
+
+        btnInvoices.setMinimumSize(new java.awt.Dimension(100, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 15, 20);
         jPanelLeft.add(btnInvoices, gridBagConstraints);
+
+        btnConfig.setMinimumSize(new java.awt.Dimension(100, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 15, 20);
         jPanelLeft.add(btnConfig, gridBagConstraints);
-        jPanelLeft.add(filler1, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.25;
+        gridBagConstraints.weightx = 0.35;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanelLeft, gridBagConstraints);
 
         jPanelRight.setBackground(new java.awt.Color(160, 238, 204));
-        jPanelRight.setPreferredSize(new java.awt.Dimension(200, 200));
+        jPanelRight.setPreferredSize(new java.awt.Dimension(900, 600));
         jPanelRight.setLayout(new java.awt.GridBagLayout());
 
         lblEnterpriseIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fiskaly-logo-inverted-transparent.png"))); // NOI18N
@@ -114,7 +123,7 @@ public class Principal extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.75;
+        gridBagConstraints.weightx = 0.65;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanelRight, gridBagConstraints);
 
@@ -161,7 +170,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnInvoices;
     private javax.swing.JButton btnProducts;
-    private javax.swing.Box.Filler filler1;
     private javax.swing.JPanel jPanelLeft;
     private javax.swing.JPanel jPanelRight;
     private javax.swing.JLabel lblEnterpriseIcon;
