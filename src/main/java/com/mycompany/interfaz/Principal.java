@@ -17,7 +17,15 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        // Maximizar
+        this.setExtendedState(MAXIMIZED_BOTH);
+
+        // --- Aplicar el estilo a los botones ---
+        Estilos.configurarBotonMenu(btnClients, "CLIENTES", "img/clients_Icon.svg");
+        Estilos.configurarBotonMenu(btnProducts, "PRODUCTOS", "img/products_Icon.svg");
+        Estilos.configurarBotonMenu(btnInvoices, "FACTURAS", "img/invoice_Icon.svg");
+        Estilos.configurarBotonMenu(btnConfig, "CONFIGURACIÓN", "img/configuration_Icon.svg");
+
     }
 
     /**
@@ -31,9 +39,14 @@ public class Principal extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanelLeft = new javax.swing.JPanel();
-        jLabelFactuSoftIcon = new javax.swing.JLabel();
+        lblFactuSoftIcon = new javax.swing.JLabel();
+        btnClients = new javax.swing.JButton();
+        btnProducts = new javax.swing.JButton();
+        btnInvoices = new javax.swing.JButton();
+        btnConfig = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         jPanelRight = new javax.swing.JPanel();
-        jLabelEnterpriseIcon = new javax.swing.JLabel();
+        lblEnterpriseIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 360));
@@ -43,38 +56,74 @@ public class Principal extends javax.swing.JFrame {
         jPanelLeft.setBackground(new java.awt.Color(160, 238, 204));
         jPanelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jLabelFactuSoftIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/LOGO_small.png"))); // NOI18N
-        jLabelFactuSoftIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelLeft.add(jLabelFactuSoftIcon, new java.awt.GridBagConstraints());
+        lblFactuSoftIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO.png"))); // NOI18N
+        lblFactuSoftIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
+        jPanelLeft.add(lblFactuSoftIcon, gridBagConstraints);
+
+        btnClients.addActionListener(this::btnClientsActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        jPanelLeft.add(btnClients, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        jPanelLeft.add(btnProducts, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        jPanelLeft.add(btnInvoices, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 40);
+        jPanelLeft.add(btnConfig, gridBagConstraints);
+        jPanelLeft.add(filler1, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weightx = 0.25;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanelLeft, gridBagConstraints);
 
-        jPanelRight.setBackground(new java.awt.Color(255, 102, 0));
+        jPanelRight.setBackground(new java.awt.Color(160, 238, 204));
+        jPanelRight.setPreferredSize(new java.awt.Dimension(200, 200));
         jPanelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabelEnterpriseIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fiskaly-logo-inverted-transparent.png"))); // NOI18N
+        lblEnterpriseIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fiskaly-logo-inverted-transparent.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanelRight.add(jLabelEnterpriseIcon, gridBagConstraints);
+        jPanelRight.add(lblEnterpriseIcon, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weightx = 0.75;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanelRight, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,9 +157,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelEnterpriseIcon;
-    private javax.swing.JLabel jLabelFactuSoftIcon;
+    private javax.swing.JButton btnClients;
+    private javax.swing.JButton btnConfig;
+    private javax.swing.JButton btnInvoices;
+    private javax.swing.JButton btnProducts;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JPanel jPanelLeft;
     private javax.swing.JPanel jPanelRight;
+    private javax.swing.JLabel lblEnterpriseIcon;
+    private javax.swing.JLabel lblFactuSoftIcon;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,7 +30,7 @@ public class Estilos {
 
     // --- 2. FUENTES ---
     public static final Font FUENTE_TITULO = new Font("Century Gothic", Font.BOLD, 24);
-    public static final Font FUENTE_MENU = new Font("Century Gothic", Font.PLAIN, 18);
+    public static final Font FUENTE_MENU = new Font("Century Gothic", Font.PLAIN, 28);
     public static final Font FUENTE_TEXTO = new Font("Century Gothic", Font.PLAIN, 14);
     public static final Font FUENTE_BOTON = new Font("Century Gothic", Font.BOLD, 14);
 
@@ -55,13 +55,16 @@ public class Estilos {
         boton.setOpaque(true);         // Para que se pinte el fondo
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Manita al pasar ratón
 
+        // Aumentar el espacio entre icono y texto
+        boton.setIconTextGap(30);
+
         // Alineación (Izquierda + Espacio)
         boton.setHorizontalAlignment(SwingConstants.LEFT);
         boton.setIconTextGap(15);
 
         // --- ICONOS (SVG) ---
         // Tamaño estándar para iconos de menú
-        int tamaño = 24;
+        int tamaño = 50;
 
         // 1. Icono Normal (Tal cual viene en el SVG, asumimos color negro)
         FlatSVGIcon iconoNormal = new FlatSVGIcon(rutaIconoSvg, tamaño, tamaño);
@@ -79,7 +82,7 @@ public class Estilos {
                 + "hoverBackground: #000000;" // Fondo negro al pasar ratón
                 + "hoverForeground: #FFFFFF;" // Texto blanco al pasar ratón
                 + "arc: 0;" // Bordes cuadrados (franja)
-                + "margin: 10,20,10,20;" // Margen interno (Arriba, Izq, Abajo, Der)
+                + "margin: 20,30,20,300;" // Margen interno (Arriba, Izq, Abajo, Der)
         );
     }
 
