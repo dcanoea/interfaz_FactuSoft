@@ -405,6 +405,7 @@ public class Principal extends javax.swing.JFrame {
         jPanelLeft.add(btnInvoices, gridBagConstraints);
 
         btnConfig.setMinimumSize(new java.awt.Dimension(100, 50));
+        btnConfig.addActionListener(this::btnConfigActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -502,6 +503,26 @@ public class Principal extends javax.swing.JFrame {
         jPanelRight.revalidate();
         jPanelRight.repaint();
     }//GEN-LAST:event_btnInvoicesActionPerformed
+
+    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
+        activarModoMinimizado();
+
+        // 1. GESTIÓN VISUAL
+        seleccionarBoton(btnConfig, "img/configuration_Icon.svg");
+
+        // 2. CARGAR PANEL
+        PanelConfig pnl = new PanelConfig();
+        pnl.setSize(1000, 800);
+        pnl.setLocation(0, 0);
+
+        pnl.getBtnHome().addActionListener(e -> restaurarModoInicio());
+
+        jPanelRight.removeAll();
+        jPanelRight.setLayout(new java.awt.BorderLayout());
+        jPanelRight.add(pnl, java.awt.BorderLayout.CENTER);
+        jPanelRight.revalidate();
+        jPanelRight.repaint();
+    }//GEN-LAST:event_btnConfigActionPerformed
 
     /**
      * @param args the command line arguments
