@@ -197,7 +197,7 @@ public class Principal extends javax.swing.JFrame {
         lblFactuSoftIcon.setText("");
         lblFactuSoftIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         try {
-            javax.swing.ImageIcon logo = new javax.swing.ImageIcon(getClass().getResource("/img/LOGO.png"));
+            javax.swing.ImageIcon logo = new javax.swing.ImageIcon(getClass().getResource("/img/LOGO_small.png"));
             lblFactuSoftIcon.setIcon(logo);
             // BORDE NEGRO ORIGINAL
             lblFactuSoftIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -282,7 +282,6 @@ public class Principal extends javax.swing.JFrame {
      * @param rutaIcono La ruta del icono SVG de ese botón (para pintarlo de
      * blanco).
      */
-
     // --- Helper corregido: Usa Estilos y restaura tamaño ---
     private void restaurarBotonOriginal(javax.swing.JButton btn, String texto, String rutaIcono) {
         // 1. Limpiar estilos "extraños" que pudieran haber quedado del modo minimizado
@@ -367,7 +366,7 @@ public class Principal extends javax.swing.JFrame {
         jPanelLeft.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanelLeft.setLayout(new java.awt.GridBagLayout());
 
-        lblFactuSoftIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO.png"))); // NOI18N
+        lblFactuSoftIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO_small.png"))); // NOI18N
         lblFactuSoftIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -396,6 +395,7 @@ public class Principal extends javax.swing.JFrame {
         jPanelLeft.add(btnProducts, gridBagConstraints);
 
         btnInvoices.setMinimumSize(new java.awt.Dimension(100, 50));
+        btnInvoices.addActionListener(this::btnInvoicesActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -464,8 +464,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientsActionPerformed
 
     private void btnProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsActionPerformed
-       activarModoMinimizado();
-        
+        activarModoMinimizado();
+
         // 1. GESTIÓN VISUAL (Una sola línea)
         seleccionarBoton(btnProducts, "img/products_Icon.svg");
 
@@ -482,6 +482,26 @@ public class Principal extends javax.swing.JFrame {
         jPanelRight.revalidate();
         jPanelRight.repaint();
     }//GEN-LAST:event_btnProductsActionPerformed
+
+    private void btnInvoicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoicesActionPerformed
+        activarModoMinimizado();
+
+        // 1. GESTIÓN VISUAL
+        seleccionarBoton(btnInvoices, "img/invoice_Icon.svg");
+
+        // 2. CARGAR PANEL
+        PanelFacturas pnl = new PanelFacturas();
+        pnl.setSize(1000, 800);
+        pnl.setLocation(0, 0);
+
+        pnl.getBtnHome().addActionListener(e -> restaurarModoInicio());
+
+        jPanelRight.removeAll();
+        jPanelRight.setLayout(new java.awt.BorderLayout());
+        jPanelRight.add(pnl, java.awt.BorderLayout.CENTER);
+        jPanelRight.revalidate();
+        jPanelRight.repaint();
+    }//GEN-LAST:event_btnInvoicesActionPerformed
 
     /**
      * @param args the command line arguments
