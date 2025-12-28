@@ -107,4 +107,90 @@ public class Estilos {
         campo.setSelectionColor(COLOR_FONDO_MENTA); // Selección verde menta
         campo.setSelectedTextColor(COLOR_NEGRO_PURO);
     }
+
+    public static void configurarTabla(javax.swing.JTable tabla, javax.swing.JScrollPane scroll) {
+        // Color Verde Menta
+        java.awt.Color colorMenta = new java.awt.Color(160, 238, 204);
+
+        // 1. CONFIGURACIÓN VISUAL BÁSICA (Lo que arregla el fondo gris)
+        tabla.setBackground(colorMenta);      // <--- ESTO ARREGLA EL FONDO GRIS DE LA TABLA
+        tabla.setFillsViewportHeight(true);   // <--- ESTO HACE QUE LA TABLA OCUPE TODO EL ALTO
+        tabla.setRowHeight(40);
+        tabla.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+
+        // Desactivar selección de celdas individuales
+        tabla.setCellSelectionEnabled(false);
+        tabla.setColumnSelectionAllowed(false);
+        tabla.setRowSelectionAllowed(true);
+
+        // 2. RENDERER (PINTOR) PERSONALIZADO
+        // Se encarga de pintar las filas de negro al seleccionarlas y verde si no
+        tabla.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            private final javax.swing.border.Border padding = javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10);
+
+            @Override
+            public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                // Truco: hasFocus = false para que no pinte el borde de foco
+                super.getTableCellRendererComponent(table, value, isSelected, false, row, column);
+
+                if (isSelected) {
+                    setBackground(java.awt.Color.BLACK);
+                    setForeground(java.awt.Color.WHITE);
+                } else {
+                    setBackground(colorMenta); // Verde para las filas normales
+                    setForeground(java.awt.Color.BLACK);
+                }
+
+                setBorder(padding);
+                return this;
+            }
+        });
+
+        // 3. LIMPIEZA (Quitar rejillas)
+        tabla.setShowGrid(false);
+        tabla.setShowHorizontalLines(false);
+        tabla.setShowVerticalLines(false);
+        tabla.setIntercellSpacing(new java.awt.Dimension(0, 0));
+
+        // 4. CABECERA
+        javax.swing.table.JTableHeader header = tabla.getTableHeader();
+        header.setBackground(COLOR_VERDE_FUERTE); // Verde un poco más oscuro
+        header.setForeground(java.awt.Color.BLACK);
+        header.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+        header.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, java.awt.Color.BLACK));
+        header.setReorderingAllowed(false);
+
+        // 5. SCROLLPANE (FONDO VERDE TAMBIÉN)
+        if (scroll != null) {
+            scroll.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK, 1));
+            scroll.getViewport().setBackground(colorMenta); // <--- ESTO ARREGLA EL HUECO SOBRANTE
+        }
+    }
+
+    public static void configurarBarraBusqueda(javax.swing.JTextField txt) {
+        txt.putClientProperty(com.formdev.flatlaf.FlatClientProperties.STYLE, ""
+                + "arc: 999;" // Redondo
+                + "margin: 5,15,5,15;" // Márgenes internos
+                + "borderWidth: 0;" // Sin borde gris
+                + "background: #FFFFFF;" // Blanco puro
+        );
+        txt.putClientProperty(com.formdev.flatlaf.FlatClientProperties.PLACEHOLDER_TEXT, "Busca Cliente...");
+        txt.putClientProperty(com.formdev.flatlaf.FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new com.formdev.flatlaf.extras.FlatSVGIcon("img/search.svg"));
+    }
+
+    public static void configurarBotonAccion(javax.swing.JButton btn) {
+        btn.setBackground(COLOR_NEGRO_SUAVE);
+        btn.setForeground(Color.WHITE);
+        btn.setFont(FUENTE_BOTON);
+        btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        // Estilo FlatLaf Píldora
+        btn.putClientProperty(com.formdev.flatlaf.FlatClientProperties.STYLE, ""
+                + "arc: 999;" // Redondo total
+                + "borderWidth: 0;" // Sin borde
+                + "focusWidth: 0;" // Sin halo azul
+                + "innerFocusWidth: 0;"
+                + "margin: 8,15,8,15;" // Márgenes internos
+        );
+    }
 }
