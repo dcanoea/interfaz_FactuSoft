@@ -109,11 +109,8 @@ public class Estilos {
     }
 
     public static void configurarTabla(javax.swing.JTable tabla, javax.swing.JScrollPane scroll) {
-        // Color Verde Menta
-        java.awt.Color colorMenta = new java.awt.Color(160, 238, 204);
-
         // 1. CONFIGURACIÓN VISUAL BÁSICA (Lo que arregla el fondo gris)
-        tabla.setBackground(colorMenta);      // <--- ESTO ARREGLA EL FONDO GRIS DE LA TABLA
+        tabla.setBackground(COLOR_FONDO_MENTA);      // <--- ESTO ARREGLA EL FONDO GRIS DE LA TABLA
         tabla.setFillsViewportHeight(true);   // <--- ESTO HACE QUE LA TABLA OCUPE TODO EL ALTO
         tabla.setRowHeight(40);
         tabla.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
@@ -137,7 +134,7 @@ public class Estilos {
                     setBackground(java.awt.Color.BLACK);
                     setForeground(java.awt.Color.WHITE);
                 } else {
-                    setBackground(colorMenta); // Verde para las filas normales
+                    setBackground(COLOR_FONDO_MENTA); // Verde para las filas normales
                     setForeground(java.awt.Color.BLACK);
                 }
 
@@ -163,7 +160,7 @@ public class Estilos {
         // 5. SCROLLPANE (FONDO VERDE TAMBIÉN)
         if (scroll != null) {
             scroll.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK, 1));
-            scroll.getViewport().setBackground(colorMenta); // <--- ESTO ARREGLA EL HUECO SOBRANTE
+            scroll.getViewport().setBackground(COLOR_FONDO_MENTA); // <--- ESTO ARREGLA EL HUECO SOBRANTE
         }
     }
 
@@ -194,3 +191,5 @@ public class Estilos {
         );
     }
 }
+
+

@@ -275,6 +275,14 @@ public class Principal extends javax.swing.JFrame {
         jPanelRight.repaint();
     }
 
+    /**
+     * Método centralizado para gestionar el restaurado de los botones del menú.
+     *
+     * @param btnSeleccionado El botón que acabamos de pulsar.
+     * @param rutaIcono La ruta del icono SVG de ese botón (para pintarlo de
+     * blanco).
+     */
+
     // --- Helper corregido: Usa Estilos y restaura tamaño ---
     private void restaurarBotonOriginal(javax.swing.JButton btn, String texto, String rutaIcono) {
         // 1. Limpiar estilos "extraños" que pudieran haber quedado del modo minimizado
@@ -287,6 +295,48 @@ public class Principal extends javax.swing.JFrame {
         // (Esto es lo que faltaba para que se vieran "gorditos" como al principio)
         btn.setMinimumSize(new java.awt.Dimension(100, 50));
         btn.setPreferredSize(null); // Dejamos que el layout decida el tamaño final
+    }
+
+    /**
+     * Método centralizado para gestionar el resaltado de los botones del menú.
+     *
+     * @param btnSeleccionado El botón que acabamos de pulsar.
+     * @param rutaIcono La ruta del icono SVG de ese botón (para pintarlo de
+     * blanco).
+     */
+    private void seleccionarBoton(javax.swing.JButton btnSeleccionado, String rutaIcono) {
+        // --- 1. RESETEAR TODOS A ESTADO INACTIVO (Verde / Negro) ---
+        // Array con todos los botones y sus iconos originales
+        javax.swing.JButton[] todos = {btnClients, btnProducts, btnInvoices, btnConfig};
+        String[] iconos = {"img/clients_Icon.svg", "img/products_Icon.svg", "img/invoice_Icon.svg", "img/configuration_Icon.svg"};
+
+        for (int i = 0; i < todos.length; i++) {
+            javax.swing.JButton btn = todos[i];
+            // Restaurar color fondo y texto
+            btn.setBackground(Estilos.COLOR_FONDO_MENTA); // Menta
+            btn.setForeground(java.awt.Color.BLACK);
+
+            // Restaurar icono negro original
+            try {
+                // Usamos 50x50 porque estamos en modo menú lateral (ajusta si usas otro tamaño)
+                btn.setIcon(new com.formdev.flatlaf.extras.FlatSVGIcon(iconos[i], 50, 50));
+            } catch (Exception e) {
+            }
+        }
+
+        // --- 2. RESALTAR EL SELECCIONADO (Negro / Blanco) ---
+        if (btnSeleccionado != null) {
+            btnSeleccionado.setBackground(java.awt.Color.decode("#111111")); // Negro
+            btnSeleccionado.setForeground(java.awt.Color.WHITE);             // Blanco
+
+            // Poner el icono específico en BLANCO
+            try {
+                com.formdev.flatlaf.extras.FlatSVGIcon iconWhite = new com.formdev.flatlaf.extras.FlatSVGIcon(rutaIcono, 50, 50);
+                iconWhite.setColorFilter(new com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter(c -> java.awt.Color.WHITE));
+                btnSeleccionado.setIcon(iconWhite);
+            } catch (Exception e) {
+            }
+        }
     }
 
     /**
@@ -336,6 +386,7 @@ public class Principal extends javax.swing.JFrame {
         jPanelLeft.add(btnClients, gridBagConstraints);
 
         btnProducts.setMinimumSize(new java.awt.Dimension(100, 50));
+        btnProducts.addActionListener(this::btnProductsActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -393,26 +444,44 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientsActionPerformed
-        // 1. Transformar el panel izquierdo (Modo Trabajo)
         activarModoMinimizado();
 
-        // 2. Crear y Cargar el PanelClientes
+        // 1. GESTIÓN VISUAL (Una sola línea)
+        seleccionarBoton(btnClients, "img/clients_Icon.svg");
+
+        // 2. CARGAR PANEL
         PanelClientes pnl = new PanelClientes();
         pnl.setSize(1000, 800);
         pnl.setLocation(0, 0);
 
-        // Le decimos al botón HOME del panel que ejecute 'restaurarModoInicio'
-        pnl.getBtnHome().addActionListener(e -> {
-            restaurarModoInicio();
-        });
+        pnl.getBtnHome().addActionListener(e -> restaurarModoInicio());
 
-        // 3. Mostrarlo en la derecha
         jPanelRight.removeAll();
         jPanelRight.setLayout(new java.awt.BorderLayout());
         jPanelRight.add(pnl, java.awt.BorderLayout.CENTER);
         jPanelRight.revalidate();
         jPanelRight.repaint();
     }//GEN-LAST:event_btnClientsActionPerformed
+
+    private void btnProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsActionPerformed
+       activarModoMinimizado();
+        
+        // 1. GESTIÓN VISUAL (Una sola línea)
+        seleccionarBoton(btnProducts, "img/products_Icon.svg");
+
+        // 2. CARGAR PANEL
+        PanelProductos pnl = new PanelProductos();
+        pnl.setSize(1000, 800);
+        pnl.setLocation(0, 0);
+
+        pnl.getBtnHome().addActionListener(e -> restaurarModoInicio());
+
+        jPanelRight.removeAll();
+        jPanelRight.setLayout(new java.awt.BorderLayout());
+        jPanelRight.add(pnl, java.awt.BorderLayout.CENTER);
+        jPanelRight.revalidate();
+        jPanelRight.repaint();
+    }//GEN-LAST:event_btnProductsActionPerformed
 
     /**
      * @param args the command line arguments
