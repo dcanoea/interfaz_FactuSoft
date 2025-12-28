@@ -171,7 +171,6 @@ public class Estilos {
                 + "borderWidth: 0;" // Sin borde gris
                 + "background: #FFFFFF;" // Blanco puro
         );
-        txt.putClientProperty(com.formdev.flatlaf.FlatClientProperties.PLACEHOLDER_TEXT, "Busca Cliente...");
         txt.putClientProperty(com.formdev.flatlaf.FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new com.formdev.flatlaf.extras.FlatSVGIcon("img/search.svg"));
     }
 

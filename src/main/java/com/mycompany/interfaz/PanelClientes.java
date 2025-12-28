@@ -46,6 +46,7 @@ public class PanelClientes extends javax.swing.JPanel {
         // --- 2. BARRA DE BÚSQUEDA
         // --- APLICAR ESTILO A LA BARRA DE BÚSQUEDA ---
         Estilos.configurarBarraBusqueda(txtSearch);
+        txtSearch.putClientProperty(com.formdev.flatlaf.FlatClientProperties.PLACEHOLDER_TEXT, "Buscar Cliente por Nombre o DNI/NIE/CIF");
 
         // --- 3. BOTONES
         // --- APLICAR ESTILO A LOS BOTONES ---

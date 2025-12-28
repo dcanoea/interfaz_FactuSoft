@@ -26,13 +26,13 @@ public class PanelProductos extends javax.swing.JPanel {
         tblProducts.getColumnModel().getColumn(0).setMaxWidth(110);
 
         // Descripción: 250px
-        tblProducts.getColumnModel().getColumn(1).setPreferredWidth(250);
+        tblProducts.getColumnModel().getColumn(1).setPreferredWidth(450);
 
-        // Precio: 90px (Le quitamos sitio para dárselo al Email)
-        tblProducts.getColumnModel().getColumn(2).setPreferredWidth(90);
+        // Precio: 90px 
+        tblProducts.getColumnModel().getColumn(2).setPreferredWidth(50);
 
         // Tipo IVA: 90 px
-        tblProducts.getColumnModel().getColumn(3).setPreferredWidth(90);
+        tblProducts.getColumnModel().getColumn(3).setPreferredWidth(50);
 
         // Bloquear reordenamiento
         tblProducts.getTableHeader().setReorderingAllowed(false);
@@ -40,6 +40,7 @@ public class PanelProductos extends javax.swing.JPanel {
         // --- 2. BARRA DE BÚSQUEDA
         // --- APLICAR ESTILO A LA BARRA DE BÚSQUEDA ---
         Estilos.configurarBarraBusqueda(txtSearch);
+        txtSearch.putClientProperty(com.formdev.flatlaf.FlatClientProperties.PLACEHOLDER_TEXT, "Buscar Producto por Descripción o Código");
 
         // --- 3. BOTONES
         // --- APLICAR ESTILO A LOS BOTONES ---
