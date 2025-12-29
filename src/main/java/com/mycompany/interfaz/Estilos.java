@@ -108,6 +108,32 @@ public class Estilos {
         campo.setSelectedTextColor(COLOR_NEGRO_PURO);
     }
 
+    // --- 5. ESTILOS PARA FORMULARIOS (PANEL CREAR CLIENTE) ---
+    public static void configurarEtiquetaFormulario(javax.swing.JLabel lbl) {
+        // Recuperamos Century Gothic, negrita suave y tamaño 14
+        lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        lbl.setForeground(Color.decode("#333333")); // Gris oscuro
+    }
+
+    public static void configurarCampoFormulario(JTextField campo) {
+        // Estilo: Borde gris suave, y al enfocar se pone VERDE MENTA (#75E6B5)
+        campo.putClientProperty(FlatClientProperties.STYLE, ""
+                + "arc: 10; " // Redondeado suave
+                + "borderWidth: 1; " // Borde fino
+                + "borderColor: #a8a8a8; " // Gris medio en reposo
+                + "focusWidth: 1; " // Grosor del borde al enfocar (fino, sin halo gigante)
+                + "focusedBorderColor: #75E6B5; " // <--- TEMA MENTA (Adiós azul)
+                + "margin: 5, 10, 5, 10;" // Padding interno (altura)
+        );
+
+        campo.setBackground(Color.WHITE);
+        campo.setForeground(Color.BLACK);
+        campo.setCaretColor(Color.BLACK);
+
+        // Fuente Century Gothic
+        campo.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+    }
+
     public static void configurarTabla(javax.swing.JTable tabla, javax.swing.JScrollPane scroll) {
         // 1. CONFIGURACIÓN VISUAL BÁSICA (Lo que arregla el fondo gris)
         tabla.setBackground(COLOR_FONDO_MENTA);      // <--- ESTO ARREGLA EL FONDO GRIS DE LA TABLA
@@ -190,5 +216,3 @@ public class Estilos {
         );
     }
 }
-
-

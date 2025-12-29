@@ -147,6 +147,7 @@ public class PanelClientes extends javax.swing.JPanel {
         jPanelCenter.add(txtSearch, gridBagConstraints);
 
         btnAddClient.setText("Añadir Cliente");
+        btnAddClient.addActionListener(this::btnAddClientActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -246,6 +247,44 @@ public class PanelClientes extends javax.swing.JPanel {
     private void btnInvoicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoicesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInvoicesActionPerformed
+
+    private void btnAddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClientActionPerformed
+        // 1. Instanciar el formulario de creación
+        PanelCrearCliente pnlCrear = new PanelCrearCliente();
+
+        // 2. Obtener el contenedor padre
+        javax.swing.JPanel parent = (javax.swing.JPanel) getParent();
+
+        // --- PASO CLAVE: CAPTURAR EL COMPORTAMIENTO ACTUAL ---
+        // Guardamos los "ActionListeners" que tiene el botón Home actual antes de desaparecer.
+        // Esto captura la lógica que le dio la ventana Principal.
+        java.awt.event.ActionListener[] listenersHome = btnHome.getActionListeners();
+
+        // 3. Configurar el botón "VOLVER" del formulario nuevo
+        pnlCrear.getBtnBack().addActionListener(e -> {
+            // Al volver, limpiamos el panel derecho
+            parent.removeAll();
+
+            // Creamos el nuevo panel
+            PanelClientes nuevoPanel = new PanelClientes();
+
+            // --- PASO CLAVE: RESTAURAR EL COMPORTAMIENTO ---
+            // Le "pegamos" los listeners guardados al botón del nuevo panel
+            for (java.awt.event.ActionListener al : listenersHome) {
+                nuevoPanel.getBtnHome().addActionListener(al);
+            }
+
+            parent.add(nuevoPanel, java.awt.BorderLayout.CENTER);
+            parent.revalidate();
+            parent.repaint();
+        });
+
+        // 5. CAMBIAZO: Quitar lista (this), poner formulario (pnlCrear)
+        parent.removeAll();
+        parent.add(pnlCrear, java.awt.BorderLayout.CENTER);
+        parent.revalidate();
+        parent.repaint();
+    }//GEN-LAST:event_btnAddClientActionPerformed
 
     private void setIconoBlanco(javax.swing.JButton btn, String rutaSvg) {
         com.formdev.flatlaf.extras.FlatSVGIcon icon = new com.formdev.flatlaf.extras.FlatSVGIcon(rutaSvg, 20, 20);
