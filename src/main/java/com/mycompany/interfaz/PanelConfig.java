@@ -20,10 +20,14 @@ public class PanelConfig extends javax.swing.JPanel {
         // --- APLICAR ESTILO A LOS BOTONES ---
         // Creamos una lista con todos los botones para aplicarles el estilo "Píldora Negra" de golpe
         javax.swing.JButton[] botonesAccion = {
-            btnDashboardFiskaly, // Añadir Cliente
+            btnDashboardFiskaly,
+            btnAPIKey,
             btnTaxpayer,
             btnClientFiskaly,
-            btnInvoicesExport
+            btnInvoicesExport,
+            btnAddUser,
+            btnEditUser,
+            btnDeleteUser
         };
 
         for (javax.swing.JButton btn : botonesAccion) {
@@ -44,16 +48,19 @@ public class PanelConfig extends javax.swing.JPanel {
 
         // Añadir icono a los botones
         setIconoBlanco(btnDashboardFiskaly, "img/globe.svg");
+        setIconoBlanco(btnAPIKey, "img/key.svg");
         setIconoBlanco(btnTaxpayer, "img/taxpayer.svg");
         setIconoBlanco(btnClientFiskaly, "img/keyboard.svg");
         setIconoBlanco(btnInvoicesExport, "img/export.svg");
+        setIconoBlanco(btnAddUser, "img/user_add.svg");
+        setIconoBlanco(btnEditUser, "img/user_edit.svg");
+        setIconoBlanco(btnDeleteUser, "img/user_delete.svg");
 
         // Ajustes finales de texto y márgenes
-        javax.swing.JButton[] botones = {btnDashboardFiskaly, btnTaxpayer, btnClientFiskaly, btnInvoicesExport};
+        javax.swing.JButton[] botones = {btnDashboardFiskaly, btnAPIKey, btnTaxpayer, btnClientFiskaly, btnInvoicesExport};
         for (javax.swing.JButton btn : botones) {
             btn.setIconTextGap(15);
-            btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-            // Ajusta este margen si quieres los botones más o menos anchos
+            btn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             btn.setMargin(new java.awt.Insets(10, 15, 10, 15));
         }
     }
@@ -75,10 +82,15 @@ public class PanelConfig extends javax.swing.JPanel {
         btnTaxpayer = new javax.swing.JButton();
         btnClientFiskaly = new javax.swing.JButton();
         btnInvoicesExport = new javax.swing.JButton();
+        btnAPIKey = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jPanelRight = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        btnAddUser = new javax.swing.JButton();
+        btnEditUser = new javax.swing.JButton();
+        btnDeleteUser = new javax.swing.JButton();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 
         setBackground(new java.awt.Color(160, 238, 204));
         setLayout(new java.awt.BorderLayout());
@@ -111,7 +123,7 @@ public class PanelConfig extends javax.swing.JPanel {
         btnTaxpayer.setText("Crear Dispositivo Firmante");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 15, 0);
@@ -120,7 +132,7 @@ public class PanelConfig extends javax.swing.JPanel {
         btnClientFiskaly.setText("Crear Dispositivo Cliente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 15, 0);
@@ -129,14 +141,23 @@ public class PanelConfig extends javax.swing.JPanel {
         btnInvoicesExport.setText("Exportar Facturas");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 15, 0);
         jPanelCenter.add(btnInvoicesExport, gridBagConstraints);
+
+        btnAPIKey.setText("Cambiar API Key");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 15, 0);
+        jPanelCenter.add(btnAPIKey, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.weighty = 1.0;
         jPanelCenter.add(filler3, gridBagConstraints);
 
@@ -157,8 +178,41 @@ public class PanelConfig extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 0.5;
         jPanelRight.add(filler1, gridBagConstraints);
+
+        btnAddUser.setText("Crear Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 10);
+        jPanelRight.add(btnAddUser, gridBagConstraints);
+
+        btnEditUser.setText("Editar Usuario");
+        btnEditUser.setActionCommand("Editar Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 10);
+        jPanelRight.add(btnEditUser, gridBagConstraints);
+
+        btnDeleteUser.setText("Borrar Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 10);
+        jPanelRight.add(btnDeleteUser, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weighty = 1.0;
+        jPanelRight.add(filler2, gridBagConstraints);
 
         add(jPanelRight, java.awt.BorderLayout.EAST);
     }// </editor-fold>//GEN-END:initComponents
@@ -171,12 +225,17 @@ public class PanelConfig extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAPIKey;
+    private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnClientFiskaly;
     private javax.swing.JButton btnDashboardFiskaly;
+    private javax.swing.JButton btnDeleteUser;
+    private javax.swing.JButton btnEditUser;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnInvoicesExport;
     private javax.swing.JButton btnTaxpayer;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
     private javax.swing.JLabel iconFiskaly;
