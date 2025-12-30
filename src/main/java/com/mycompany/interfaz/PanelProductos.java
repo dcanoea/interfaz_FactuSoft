@@ -220,37 +220,29 @@ public class PanelProductos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
-        // 1. Instanciar el formulario de creación
+        // 1. Instanciar el formulario de productos (NO clientes)
         PanelCrearProducto pnlCrear = new PanelCrearProducto();
 
         // 2. Obtener el contenedor padre
         javax.swing.JPanel parent = (javax.swing.JPanel) getParent();
 
-        // --- PASO CLAVE: CAPTURAR EL COMPORTAMIENTO ACTUAL ---
-        // Guardamos los "ActionListeners" que tiene el botón Home actual antes de desaparecer.
-        // Esto captura la lógica que le dio la ventana Principal.
-        java.awt.event.ActionListener[] listenersHome = btnHome.getActionListeners();
-
-        // 3. Configurar el botón "VOLVER" del formulario nuevo
+        // (Opcional) Capturar listeners del botón Home si usas esa lógica
+        // java.awt.event.ActionListener[] listenersHome = btnHome.getActionListeners();
+        // 3. Configurar el botón "VOLVER"
         pnlCrear.getBtnBack().addActionListener(e -> {
-            // Al volver, limpiamos el panel derecho
             parent.removeAll();
 
-            // Creamos el nuevo panel
-            PanelClientes nuevoPanel = new PanelClientes();
+            // --- AQUÍ ESTÁ EL CAMBIO ---
+            // Antes tenías: parent.add(new PanelClientes(), ...);
+            // Cámbialo por:
+            parent.add(new PanelProductos(), java.awt.BorderLayout.CENTER);
 
-            // --- PASO CLAVE: RESTAURAR EL COMPORTAMIENTO ---
-            // Le "pegamos" los listeners guardados al botón del nuevo panel
-            for (java.awt.event.ActionListener al : listenersHome) {
-                nuevoPanel.getBtnHome().addActionListener(al);
-            }
-
-            parent.add(nuevoPanel, java.awt.BorderLayout.CENTER);
+            // (Opcional) Restaurar listeners del Home...
             parent.revalidate();
             parent.repaint();
         });
 
-        // 5. CAMBIAZO: Quitar lista (this), poner formulario (pnlCrear)
+        // 4. Mostrar el formulario
         parent.removeAll();
         parent.add(pnlCrear, java.awt.BorderLayout.CENTER);
         parent.revalidate();

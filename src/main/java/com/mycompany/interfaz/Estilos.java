@@ -86,7 +86,7 @@ public class Estilos {
         );
     }
 
-    // --- 4. MÉTODO PARA CAMPOS DE TEXTO (Login y Formularios) ---
+    // --- 4. MÉTODO PARA CAMPOS DE TEXTO Y JCOMBOBOX(Login y Formularios) ---
     /**
      * Aplica el estilo "Hacker/Moderno": Fondo Negro, Texto Blanco, Selección
      * Menta.
@@ -108,7 +108,51 @@ public class Estilos {
         campo.setSelectedTextColor(COLOR_NEGRO_PURO);
     }
 
-    // --- 5. ESTILOS PARA FORMULARIOS (PANEL CREAR CLIENTE) ---
+    public static void aplicarEstiloComboBox(javax.swing.JComboBox combo) {
+        // 1. COLORES DEL BOTÓN (Estado normal cerrado)
+        combo.setBackground(java.awt.Color.WHITE);
+        combo.setForeground(com.mycompany.interfaz.Estilos.COLOR_NEGRO_PURO);
+
+        // 2. ESTILO VISUAL DEL BOTÓN (FlatLaf)
+        combo.putClientProperty(com.formdev.flatlaf.FlatClientProperties.STYLE, ""
+                + "arc: 999; " // Redondeado
+                + "borderWidth: 1; "
+                + "borderColor: #cccccc; "
+                + "focusedBorderColor: #CBF6E3; "
+                + "padding: 6,10,6,10; " // Altura para igualar al TextField
+                + "arrowType: chevron; "
+                + "buttonArrowColor: #000000; "
+                + "buttonBackground: #FFFFFF; "
+                + "buttonSeparatorWidth: 0; "
+        );
+
+        // 3. PERSONALIZACIÓN DE LA LISTA DESPLEGABLE (POPUP)
+        // Aquí definimos el color Blanco de fondo y Verde Oscuro de selección
+        combo.setRenderer(new javax.swing.DefaultListCellRenderer() {
+            @Override
+            public java.awt.Component getListCellRendererComponent(javax.swing.JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                // --- CONFIGURACIÓN DE COLORES DE LA LISTA ---
+                if (isSelected) {
+                    // CASO 1: Cuando pasas el ratón por encima (Seleccionado)
+                    setBackground(COLOR_VERDE_FUERTE);
+                    setForeground(COLOR_NEGRO_PURO);
+                } else {
+                    // CASO 2: Elemento normal (No seleccionado)
+                    setBackground(COLOR_BLANCO);
+                    setForeground(COLOR_NEGRO_PURO);
+                }
+
+                // Margen interno para que el texto de la lista no quede pegado al borde
+                setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+                return this;
+            }
+        });
+    }
+
+    // --- 5. ESTILOS PARA FORMULARIOS (PANELES CREAR CLIENTE, PRODUCTO) ---
     public static void configurarEtiquetaFormulario(javax.swing.JLabel lbl) {
         // Recuperamos Century Gothic, negrita suave y tamaño 14
         lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));

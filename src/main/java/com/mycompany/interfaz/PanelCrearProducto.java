@@ -24,6 +24,21 @@ public class PanelCrearProducto extends javax.swing.JPanel {
             Estilos.configurarCampoFormulario(t);
         }
 
+        // --- APLICAR ESTILO A LOS COMBOBOX ---
+        javax.swing.JComboBox[] combos = {jComboBoxTaxType, jComboBoxTaxRate};
+        for (javax.swing.JComboBox c : combos) {
+            Estilos.aplicarEstiloComboBox(c);
+
+            // --- TRUCO FINAL DE ALINEACIÓN ---
+            // Forzamos a que el ComboBox tenga la misma altura preferida que el TextField de al lado.
+            // (Asumimos que txtUnitAmount ya tiene su estilo aplicado)
+            java.awt.Dimension sizeRef = txtUnitAmount.getPreferredSize();
+
+            // Le damos el ancho que quiera el combo, pero la ALTURA del textfield
+            c.setPreferredSize(new java.awt.Dimension(c.getPreferredSize().width, sizeRef.height));
+            c.setMinimumSize(new java.awt.Dimension(c.getMinimumSize().width, sizeRef.height));
+        }
+
         // --- 2. APLICAR ESTILO A LAS ETIQUETAS (LABELS) ---
         // Esto hará que los textos "Nombre", "Dirección", etc. se vean GRANDES
         javax.swing.JLabel[] etiquetas = {
