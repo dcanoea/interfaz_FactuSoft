@@ -33,7 +33,7 @@ public class PanelFacturas extends javax.swing.JPanel {
 
         // Estado: 90 px
         tblInvoices.getColumnModel().getColumn(3).setPreferredWidth(50);
-       
+
         // Total Factura: 90 px
         tblInvoices.getColumnModel().getColumn(4).setPreferredWidth(50);
 
@@ -138,6 +138,7 @@ public class PanelFacturas extends javax.swing.JPanel {
         jPanelCenter.add(txtSearch, gridBagConstraints);
 
         btnCreateInvoice.setText("Crear Factura");
+        btnCreateInvoice.addActionListener(this::btnCreateInvoiceActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -221,6 +222,29 @@ public class PanelFacturas extends javax.swing.JPanel {
 
         add(jPanelRight, java.awt.BorderLayout.EAST);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateInvoiceActionPerformed
+        // 1. Obtener la ventana principal (JFrame) para que sea el "padre" del diálogo
+        // Esto es necesario para que el diálogo sepa centrarse y bloquear la ventana de atrás (modal)
+        java.awt.Window parentWindow = javax.swing.SwingUtilities.getWindowAncestor(this);
+        java.awt.Frame parentFrame = null;
+
+        if (parentWindow instanceof java.awt.Frame) {
+            parentFrame = (java.awt.Frame) parentWindow;
+        }
+
+        // 2. Crear el Diálogo (true = modal, bloquea la ventana de atrás)
+        DialogCrearFactura dialog = new DialogCrearFactura(parentFrame, true);
+
+        // 3. Mostrarlo
+        // El código se detendrá aquí hasta que el usuario cierre el diálogo
+        dialog.setVisible(true);
+
+        // 4. (Opcional) Refrescar la tabla al volver
+        // Una vez se cierra el diálogo, el código continúa aquí.
+        // Si tienes un método para recargar datos, llámalo:
+        // cargarFacturasEnTabla();
+    }//GEN-LAST:event_btnCreateInvoiceActionPerformed
 
     private void setIconoBlanco(javax.swing.JButton btn, String rutaSvg) {
         com.formdev.flatlaf.extras.FlatSVGIcon icon = new com.formdev.flatlaf.extras.FlatSVGIcon(rutaSvg, 20, 20);
