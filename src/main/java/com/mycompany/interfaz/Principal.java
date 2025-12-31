@@ -338,6 +338,21 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    public void abrirNuevaFactura(String cliente, String tipo) {
+        // 1. Crear el nuevo panel pasándole los datos
+        PanelCrearFactura nuevoPanel = new PanelCrearFactura(cliente, tipo);
+
+        // 2. Ajustar tamaño (importante para que no salga enano)
+        nuevoPanel.setSize(jPanelRight.getWidth(), jPanelRight.getHeight());
+        nuevoPanel.setLocation(0, 0);
+
+        // 3. Reemplazar
+        jPanelRight.removeAll();
+        jPanelRight.add(nuevoPanel, java.awt.BorderLayout.CENTER);
+        jPanelRight.revalidate();
+        jPanelRight.repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

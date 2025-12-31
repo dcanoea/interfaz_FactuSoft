@@ -6,7 +6,7 @@ package com.mycompany.interfaz;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Frame;
 
 /**
  *
@@ -90,6 +90,7 @@ public class DialogCrearFactura extends javax.swing.JDialog {
         panelFormulario.add(txtClient, gridBagConstraints);
 
         btnSearchClient.setPreferredSize(new java.awt.Dimension(40, 40));
+        btnSearchClient.addActionListener(this::btnSearchClientActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -159,9 +160,47 @@ public class DialogCrearFactura extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
-        System.out.println("Guardando...");
-        dispose();
+        // 1. RECOGER DATOS
+        String cliente = txtClient.getText();
+        String tipoFactura = (String) jComboBoxInvoiceType.getSelectedItem();
+
+        // Validación básica
+        if (cliente.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Debes seleccionar un cliente.");
+            return;
+        }
+
+        // 2. CERRAR EL DIÁLOGO
+        this.dispose();
+
+        // 3. ENVIAR DATOS A LA VENTANA PRINCIPAL
+        java.awt.Window padre = this.getOwner(); // Obtenemos la ventana de atrás
+
+        // ¡OJO! Cambia 'Dashboard' por el nombre de tu clase principal (ej: Principal, MainFrame...)
+        if (padre instanceof Principal) {
+            Principal principal = (Principal) padre;
+
+            // Llamamos al método puente que creamos en el Paso 2
+            principal.abrirNuevaFactura(cliente, tipoFactura);
+        }
+
     }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnSearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchClientActionPerformed
+        // 1. Obtener ventana padre
+        java.awt.Window parent = javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        // 2. Abrir el buscador
+        DialogBuscarCliente buscador = new DialogBuscarCliente((Frame) parent, true);
+        buscador.setVisible(true); // Se detiene aquí esperando
+
+        // 3. Recuperar resultado
+        String resultado = buscador.getClienteSeleccionado();
+
+        // 4. Si hay resultado, ponerlo en el campo
+        if (resultado != null) {
+            txtClient.setText(resultado);
+        }    }//GEN-LAST:event_btnSearchClientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,9 +264,10 @@ public class DialogCrearFactura extends javax.swing.JDialog {
         panelFormulario.setOpaque(false);
         panelBotones.setOpaque(false);
 
-        // --- 2. CAMPO CLIENTE (BLANCO) ---
+        // --- 2. CAMPO CLIENTE (DESACTIVADO) ---
+        txtClient.setBackground(Color.LIGHT_GRAY);
         txtClient.setForeground(Estilos.COLOR_NEGRO_PURO);
-        txtClient.setFont(Estilos.FUENTE_TEXTO);
+        txtClient.setFont(Estilos.FUENTE_BOTON);
 
         // Borde redondeado
         txtClient.putClientProperty(com.formdev.flatlaf.FlatClientProperties.STYLE, ""
